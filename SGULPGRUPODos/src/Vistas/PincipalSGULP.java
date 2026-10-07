@@ -2,23 +2,21 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package universidad.vista;
+package Vistas;
 
 /**
  *
- * @author cesar
+ * @author UPrO
  */
-public class PrincipalSGULP extends javax.swing.JFrame {
-    private PersonalizadoEscritorio jdpEscritorio;
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(PrincipalSGULP.class.getName());
-        
+public class PincipalSGULP extends javax.swing.JFrame {
+    
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(PincipalSGULP.class.getName());
+
     /**
-     * Creates new form PrincipalSGULP
+     * Creates new form PincipalSGULP
      */
-    public PrincipalSGULP() {
+    public PincipalSGULP() {
         initComponents();
-        jdpEscritorio = new PersonalizadoEscritorio();
-        this.setContentPane(jdpEscritorio);
     }
 
     /**
@@ -30,38 +28,55 @@ public class PrincipalSGULP extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jDesktopPane1 = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        jMenuItem4 = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
-        jMenu3 = new javax.swing.JMenu();
+        jMenu2 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItem4 = new javax.swing.JMenuItem();
+        jMenu3 = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuItem5 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
+        jDesktopPane1.setLayout(jDesktopPane1Layout);
+        jDesktopPane1Layout.setHorizontalGroup(
+            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 681, Short.MAX_VALUE)
+        );
+        jDesktopPane1Layout.setVerticalGroup(
+            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 551, Short.MAX_VALUE)
+        );
+
         jMenu1.setText("Menu");
 
-        jMenuItem4.setText("Salir");
-        jMenu1.add(jMenuItem4);
+        jMenuItem1.setText("Salir");
+        jMenu1.add(jMenuItem1);
 
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Alumnos");
 
-        jMenuItem1.setText("Inscripcion");
-        jMenu2.add(jMenuItem1);
+        jMenuItem2.setText("Inscripcion");
+        jMenuItem2.addActionListener(this::jMenuItem2ActionPerformed);
+        jMenu2.add(jMenuItem2);
+
+        jMenuItem4.setText("Insc. Materias");
+        jMenu2.add(jMenuItem4);
 
         jMenuBar1.add(jMenu2);
 
-        jMenu3.setText("Consulta");
+        jMenu3.setText("Consultas");
 
-        jMenuItem2.setText("Materias");
-        jMenu3.add(jMenuItem2);
-
-        jMenuItem3.setText("Cursada");
+        jMenuItem3.setText("Materias");
         jMenu3.add(jMenuItem3);
+
+        jMenuItem5.setText("Alumnos");
+        jMenu3.add(jMenuItem5);
 
         jMenuBar1.add(jMenu3);
 
@@ -71,15 +86,19 @@ public class PrincipalSGULP extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 784, Short.MAX_VALUE)
+            .addComponent(jDesktopPane1, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 553, Short.MAX_VALUE)
+            .addComponent(jDesktopPane1)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -103,10 +122,11 @@ public class PrincipalSGULP extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new PrincipalSGULP().setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> new PincipalSGULP().setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
@@ -115,5 +135,6 @@ public class PrincipalSGULP extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
     // End of variables declaration//GEN-END:variables
 }
