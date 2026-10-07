@@ -18,7 +18,7 @@ public class PersonalizadoEscritorio extends JDesktopPane{
 
     public PersonalizadoEscritorio() {
         try {
-            img = ImageIO.read(getClass().getResourceAsStream("/imagen/ULP.jpg"));
+            img = ImageIO.read(getClass().getResourceAsStream("/imagen/ulpgob.jpg"));
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("NO encontro la imagen!");
@@ -30,7 +30,7 @@ public class PersonalizadoEscritorio extends JDesktopPane{
     protected void paintComponent(Graphics g) {
         super.paintComponent(g); 
         //muestra la imagen en el JDesktoPane
-        g.drawImage(img, 50, 50, this);
+        g.drawImage(img, 50, 50, 400, 400, this);
     }
    
 }

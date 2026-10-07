@@ -34,12 +34,13 @@ public class PrincipalSGULP extends javax.swing.JFrame {
         jMenu1 = new javax.swing.JMenu();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        jmiInscripcion = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(900, 700));
 
         jMenu1.setText("Menu");
 
@@ -50,8 +51,9 @@ public class PrincipalSGULP extends javax.swing.JFrame {
 
         jMenu2.setText("Alumnos");
 
-        jMenuItem1.setText("Inscripcion");
-        jMenu2.add(jMenuItem1);
+        jmiInscripcion.setText("Inscripcion");
+        jmiInscripcion.addActionListener(this::jmiInscripcionActionPerformed);
+        jMenu2.add(jmiInscripcion);
 
         jMenuBar1.add(jMenu2);
 
@@ -80,6 +82,16 @@ public class PrincipalSGULP extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jmiInscripcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiInscripcionActionPerformed
+        // TODO add your handling code here:
+        jdpEscritorio.removeAll();
+        jdpEscritorio.repaint();
+        AlumnoConsulta alc = new AlumnoConsulta();
+        alc.setVisible(true);
+        jdpEscritorio.add(alc);
+        
+    }//GEN-LAST:event_jmiInscripcionActionPerformed
 
     /**
      * @param args the command line arguments
@@ -111,9 +123,9 @@ public class PrincipalSGULP extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jmiInscripcion;
     // End of variables declaration//GEN-END:variables
 }
