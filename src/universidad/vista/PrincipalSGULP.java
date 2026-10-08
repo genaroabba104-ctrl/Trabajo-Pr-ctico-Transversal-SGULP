@@ -50,6 +50,7 @@ public class PrincipalSGULP extends javax.swing.JFrame {
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Alumnos");
+        jMenu2.addActionListener(this::jMenu2ActionPerformed);
 
         jMenuItem1.setText("Cargar");
         jMenu2.add(jMenuItem1);
@@ -81,6 +82,15 @@ public class PrincipalSGULP extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jMenu2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu2ActionPerformed
+        // TODO add your handling code here:
+        jdpEscritorio.removeAll();
+        jdpEscritorio.repaint();
+        AlumnoCargar alc = new AlumnoCargar();
+        alc.setVisible(true);
+        jdpEscritorio.add(alc);
+    }//GEN-LAST:event_jMenu2ActionPerformed
 
     /**
      * @param args the command line arguments
