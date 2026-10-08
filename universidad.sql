@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 06-10-2026 a las 21:38:20
+-- Tiempo de generación: 08-10-2026 a las 23:32:43
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -49,7 +49,8 @@ CREATE TABLE `inscripcion` (
   `id_alumno` int(11) NOT NULL,
   `id_materia` int(11) NOT NULL,
   `nota` decimal(4,2) DEFAULT 0.00,
-  `asistencia` int(11) DEFAULT 0
+  `asistencia` int(11) DEFAULT 0,
+  `cursa` year(4) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
