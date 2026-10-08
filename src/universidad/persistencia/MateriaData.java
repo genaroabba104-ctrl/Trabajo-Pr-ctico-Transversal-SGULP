@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import javax.swing.JOptionPane;
 import java.util.List;
 import java.util.ArrayList;
@@ -14,8 +15,8 @@ public class MateriaData{
     
     private Connection conexion = null;
     
-    public MateriaData(Conexión con){
-        this.conexion = con.getConexion();
+    public MateriaData(){
+        this.conexion = Conexión.getConexion();
     }
     
     // 1. GUARDAR MATERIA
@@ -24,16 +25,20 @@ public class MateriaData{
         if(conexion != null){
             String insertTo = "INSERT INTO materia (nombre,anio,estado) VALUES (?,?,?)";
             
-            try(PreparedStatement ps = conexion.prepareStatement(insertTo)){
+            try(PreparedStatement ps = conexion.prepareStatement(insertTo,Statement.RETURN_GENERATED_KEYS)){
                 ps.setString(1, m.getNombre());
                 ps.setInt(2, m.getAnioMateria());
                 ps.setBoolean(3, true);
                 
                 ps.executeUpdate();
                 
+                ResultSet rs = ps.getGeneratedKeys();
+                if (rs.next()) {
+                    m.setIdMateria(rs.getInt(1));
+                    JOptionPane.showMessageDialog(null, "Materia guardada correctamente!");
+                }
                 ps.close();
                 
-                JOptionPane.showMessageDialog(null, "Materia guardada correctamente!");
             } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(null, "Error al guardar materia: " + ex.getMessage());
             }
