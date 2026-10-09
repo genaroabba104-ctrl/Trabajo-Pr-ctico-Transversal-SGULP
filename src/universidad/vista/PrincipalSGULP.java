@@ -32,39 +32,40 @@ public class PrincipalSGULP extends javax.swing.JFrame {
 
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        jMenuItem4 = new javax.swing.JMenuItem();
+        jmSalir = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        jmiCargarAlumno = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
+        jmiMateria = new javax.swing.JMenuItem();
+        jmiCursada = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(900, 700));
 
         jMenu1.setText("Menu");
 
-        jMenuItem4.setText("Salir");
-        jMenu1.add(jMenuItem4);
+        jmSalir.setText("Salir");
+        jMenu1.add(jmSalir);
 
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Alumnos");
         jMenu2.addActionListener(this::jMenu2ActionPerformed);
 
-        jMenuItem1.setText("Cargar");
-        jMenuItem1.addActionListener(this::jMenuItem1ActionPerformed);
-        jMenu2.add(jMenuItem1);
+        jmiCargarAlumno.setText("Cargar");
+        jmiCargarAlumno.addActionListener(this::jmiCargarAlumnoActionPerformed);
+        jMenu2.add(jmiCargarAlumno);
 
         jMenuBar1.add(jMenu2);
 
         jMenu3.setText("Consulta");
 
-        jMenuItem2.setText("Materias");
-        jMenu3.add(jMenuItem2);
+        jmiMateria.setText("Materias");
+        jmiMateria.addActionListener(this::jmiMateriaActionPerformed);
+        jMenu3.add(jmiMateria);
 
-        jMenuItem3.setText("Cursada / Inscripción");
-        jMenu3.add(jMenuItem3);
+        jmiCursada.setText("Cursada / Inscripción");
+        jMenu3.add(jmiCursada);
 
         jMenuBar1.add(jMenu3);
 
@@ -89,14 +90,23 @@ public class PrincipalSGULP extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jMenu2ActionPerformed
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    private void jmiCargarAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiCargarAlumnoActionPerformed
         // TODO add your handling code here:
         jdpEscritorio.removeAll();
         jdpEscritorio.repaint();
         AlumnoCargar alc = new AlumnoCargar();
         alc.setVisible(true);
         jdpEscritorio.add(alc);
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    }//GEN-LAST:event_jmiCargarAlumnoActionPerformed
+
+    private void jmiMateriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiMateriaActionPerformed
+        // TODO add your handling code here:
+        jdpEscritorio.removeAll();
+        jdpEscritorio.repaint();
+        MateriaCargar mc = new MateriaCargar();
+        mc.setVisible(true);
+        jdpEscritorio.add(mc);
+    }//GEN-LAST:event_jmiMateriaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -128,9 +138,9 @@ public class PrincipalSGULP extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jmSalir;
+    private javax.swing.JMenuItem jmiCargarAlumno;
+    private javax.swing.JMenuItem jmiCursada;
+    private javax.swing.JMenuItem jmiMateria;
     // End of variables declaration//GEN-END:variables
 }
