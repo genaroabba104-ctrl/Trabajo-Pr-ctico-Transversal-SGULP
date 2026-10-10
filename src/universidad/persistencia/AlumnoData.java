@@ -179,4 +179,30 @@ public class AlumnoData {
             return false;
         }
     }
+    
+    //Metodo para VistaAlumno
+    public Alumno buscarAlumnoPorDni(long dni) {
+    Alumno a = null;
+    String sql = "SELECT * FROM alumno WHERE dni = ?";
+
+    try (PreparedStatement ps = conexion.prepareStatement(sql)) {
+        ps.setLong(1, dni);
+        try (ResultSet rs = ps.executeQuery()) {
+            if (rs.next()) {
+                a = new Alumno();
+                a.setIdAlumno(rs.getInt("id_alumno"));
+                a.setDni(rs.getLong("dni"));
+                a.setApellido(rs.getString("apellido"));
+                a.setNombre(rs.getString("nombre"));
+                a.setFechaNacimiento(rs.getDate("fecha_nacimiento").toLocalDate());
+                a.setActivo(rs.getBoolean("estado"));
+            } else {
+                JOptionPane.showMessageDialog(null, "No existe un alumno con el DNI: " + dni);
+            }
+        }
+    } catch (SQLException e) {
+        JOptionPane.showMessageDialog(null, "Error al consultar alumno por DNI: " + e.getMessage());
+    }
+    return a;
+}
 }

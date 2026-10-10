@@ -9,16 +9,13 @@ package universidad.vista;
  * @author cesar
  */
 public class PrincipalSGULP extends javax.swing.JFrame {
-    private PersonalizadoEscritorio jdpEscritorio;
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(PrincipalSGULP.class.getName());
-        
-    /**
-     * Creates new form PrincipalSGULP
-     */
+   
+    private static final String RUTA_FONDO = "/imagen/ulpgob.jpg";
+    
     public PrincipalSGULP() {
         initComponents();
-        jdpEscritorio = new PersonalizadoEscritorio();
-        this.setContentPane(jdpEscritorio);
+        this.setLocationRelativeTo(null); // Centra la ventana en la pantalla
     }
 
     /**
@@ -30,17 +27,36 @@ public class PrincipalSGULP extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        escritorio = new javax.swing.JDesktopPane() {
+            private final java.awt.Image img = new javax.swing.ImageIcon(getClass().getResource("/imagen/ulpgob.jpg")).getImage();
+
+            @Override
+            protected void paintComponent(java.awt.Graphics g) {
+                super.paintComponent(g);
+                g.drawImage(img, 0, 0, getWidth(), getHeight(), this);
+            }
+        };
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jmSalir = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
-        jmiCargarAlumno = new javax.swing.JMenuItem();
+        AlumnoCargar = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
-        jmiMateria = new javax.swing.JMenuItem();
-        jmiCursada = new javax.swing.JMenuItem();
+        MateriaCargar = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(900, 700));
+
+        javax.swing.GroupLayout escritorioLayout = new javax.swing.GroupLayout(escritorio);
+        escritorio.setLayout(escritorioLayout);
+        escritorioLayout.setHorizontalGroup(
+            escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 784, Short.MAX_VALUE)
+        );
+        escritorioLayout.setVerticalGroup(
+            escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 553, Short.MAX_VALUE)
+        );
 
         jMenu1.setText("Menu");
 
@@ -52,20 +68,17 @@ public class PrincipalSGULP extends javax.swing.JFrame {
         jMenu2.setText("Alumnos");
         jMenu2.addActionListener(this::jMenu2ActionPerformed);
 
-        jmiCargarAlumno.setText("Cargar");
-        jmiCargarAlumno.addActionListener(this::jmiCargarAlumnoActionPerformed);
-        jMenu2.add(jmiCargarAlumno);
+        AlumnoCargar.setText("Gestión de Alumnos");
+        AlumnoCargar.addActionListener(this::AlumnoCargarActionPerformed);
+        jMenu2.add(AlumnoCargar);
 
         jMenuBar1.add(jMenu2);
 
-        jMenu3.setText("Consulta");
+        jMenu3.setText("Materias");
 
-        jmiMateria.setText("Materias");
-        jmiMateria.addActionListener(this::jmiMateriaActionPerformed);
-        jMenu3.add(jmiMateria);
-
-        jmiCursada.setText("Cursada / Inscripción");
-        jMenu3.add(jmiCursada);
+        MateriaCargar.setText("Gestion de Materias");
+        MateriaCargar.addActionListener(this::MateriaCargarActionPerformed);
+        jMenu3.add(MateriaCargar);
 
         jMenuBar1.add(jMenu3);
 
@@ -75,11 +88,11 @@ public class PrincipalSGULP extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 784, Short.MAX_VALUE)
+            .addComponent(escritorio)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 553, Short.MAX_VALUE)
+            .addComponent(escritorio)
         );
 
         pack();
@@ -90,23 +103,31 @@ public class PrincipalSGULP extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jMenu2ActionPerformed
 
-    private void jmiCargarAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiCargarAlumnoActionPerformed
-        // TODO add your handling code here:
-        jdpEscritorio.removeAll();
-        jdpEscritorio.repaint();
-        AlumnoCargar alc = new AlumnoCargar();
-        alc.setVisible(true);
-        jdpEscritorio.add(alc);
-    }//GEN-LAST:event_jmiCargarAlumnoActionPerformed
+    private void AlumnoCargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AlumnoCargarActionPerformed
+       escritorio.removeAll();
+        escritorio.repaint();
+        AlumnoCargar vistaAlumno = new AlumnoCargar();
+        vistaAlumno.setVisible(true);
+        escritorio.add(vistaAlumno);
+        try {
+            vistaAlumno.setSelected(true);
+        } catch (java.beans.PropertyVetoException e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_AlumnoCargarActionPerformed
 
-    private void jmiMateriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiMateriaActionPerformed
-        // TODO add your handling code here:
-        jdpEscritorio.removeAll();
-        jdpEscritorio.repaint();
-        MateriaCargar mc = new MateriaCargar();
-        mc.setVisible(true);
-        jdpEscritorio.add(mc);
-    }//GEN-LAST:event_jmiMateriaActionPerformed
+    private void MateriaCargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MateriaCargarActionPerformed
+       escritorio.removeAll();
+        escritorio.repaint();
+        MateriaCargar vistaMateria = new MateriaCargar();
+        vistaMateria.setVisible(true);
+        escritorio.add(vistaMateria);
+        try {
+            vistaMateria.setSelected(true);
+        } catch (java.beans.PropertyVetoException e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_MateriaCargarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -134,13 +155,13 @@ public class PrincipalSGULP extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem AlumnoCargar;
+    private javax.swing.JMenuItem MateriaCargar;
+    private javax.swing.JDesktopPane escritorio;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jmSalir;
-    private javax.swing.JMenuItem jmiCargarAlumno;
-    private javax.swing.JMenuItem jmiCursada;
-    private javax.swing.JMenuItem jmiMateria;
     // End of variables declaration//GEN-END:variables
 }
