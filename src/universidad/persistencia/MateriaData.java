@@ -183,5 +183,31 @@ public class MateriaData{
         }
     }
     
-    
+    // 8. LISTAR TODAS LAS MATERIAS (activas y no activas)
+    public List<Materia> listarTodasLasMaterias(){
+        List<Materia> materias = new ArrayList<>();
+        
+        if(conexion != null){
+            String consulta = "SELECT * FROM materia";
+            
+            try(PreparedStatement ps = conexion.prepareStatement(consulta)){
+                
+                try(ResultSet rs = ps.executeQuery()){
+                    
+                    while(rs.next()){
+                        int idMateria = rs.getInt("id_materia");
+                        String nombre = rs.getString("nombre");
+                        int anio = rs.getInt("anio");
+                        boolean estado = rs.getBoolean("estado");
+                        
+                        materias.add(new Materia(idMateria,nombre,anio,estado));
+                    }
+                }
+            } catch (SQLException e){
+                JOptionPane.showMessageDialog(null, "Error al realizar la consulta: " + e.getMessage());
+            }
+        }
+        
+        return materias;
+    }
 }

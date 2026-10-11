@@ -78,7 +78,7 @@ public class AlumnoCargar extends javax.swing.JInternalFrame {
 
         jLabel6.setFont(new java.awt.Font("Verdana", 3, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel6.setText("Activo");
+        jLabel6.setText("Estado");
 
         jLabel7.setBackground(new java.awt.Color(51, 102, 255));
         jLabel7.setFont(new java.awt.Font("Times New Roman", 2, 24)); // NOI18N
@@ -321,6 +321,7 @@ public class AlumnoCargar extends javax.swing.JInternalFrame {
         if (idAlumnoActual != 0) {
             aluData.bajaLogica(idAlumnoActual);
             chkEstado.setSelected(false); // Refleja la baja en el checkbox
+            estadoBotones(true);
         } else {
             JOptionPane.showMessageDialog(this, "Busque un alumno primero.");
         }
@@ -330,6 +331,7 @@ public class AlumnoCargar extends javax.swing.JInternalFrame {
         if (idAlumnoActual != 0) {
             aluData.altaLogica(idAlumnoActual);
             chkEstado.setSelected(true); // Refleja el alta en el checkbox
+            estadoBotones(true);
         } else {
             JOptionPane.showMessageDialog(this, "Busque un alumno primero.");
         }
@@ -365,8 +367,19 @@ public class AlumnoCargar extends javax.swing.JInternalFrame {
         // Si buscando == false (formulario limpio para guardar): solo habilita guardar
         btnGuardar.setEnabled(!buscando);
         btnModificar.setEnabled(buscando);
-        btnBajaLogica.setEnabled(buscando);
-        btnAltaLogica.setEnabled(buscando);
+        if (buscando){
+            if(chkEstado.isSelected()){
+                btnAltaLogica.setEnabled(false);
+                btnBajaLogica.setEnabled(true);
+            } else {
+                btnAltaLogica.setEnabled(true);
+                btnBajaLogica.setEnabled(false);
+            }
+        } else {
+            btnAltaLogica.setEnabled(false);
+            btnBajaLogica.setEnabled(false);
+        }
+
         btnBorrar.setEnabled(buscando);
 
         // El checkbox siempre permanece deshabilitado para edición manual

@@ -4,17 +4,28 @@
  */
 package universidad.vista;
 
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import universidad.modelo.Materia;
 import universidad.persistencia.MateriaData;
 public class MateriaCargar extends javax.swing.JInternalFrame {
+    private static List<Materia> listaMaterias;
     
+    private DefaultTableModel modelo = new DefaultTableModel(){
+        public boolean isCellEditable(int f, int c){
+            return false;
+        }
+    };
+            
  private MateriaData matData = new MateriaData();
     private int idMateriaActual = 0;
     public MateriaCargar() {
         initComponents();
         limpiarCampos();
+        visibilizarTabla(false);
+        cargarCabecera();
     }
 
     /**
@@ -46,10 +57,14 @@ public class MateriaCargar extends javax.swing.JInternalFrame {
         btnLimpiar = new javax.swing.JButton();
         txtId = new javax.swing.JTextField();
         txtNombre = new javax.swing.JTextField();
+        panelTable = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tableMaterias = new javax.swing.JTable();
 
         jCheckBox1.setText("jCheckBox1");
 
         setClosable(true);
+        setPreferredSize(new java.awt.Dimension(838, 560));
 
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 5));
         jPanel1.setForeground(new java.awt.Color(0, 0, 0));
@@ -119,6 +134,40 @@ public class MateriaCargar extends javax.swing.JInternalFrame {
         btnLimpiar.setText("Limpiar");
         btnLimpiar.addActionListener(this::btnLimpiarActionPerformed);
 
+        tableMaterias.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(tableMaterias);
+
+        javax.swing.GroupLayout panelTableLayout = new javax.swing.GroupLayout(panelTable);
+        panelTable.setLayout(panelTableLayout);
+        panelTableLayout.setHorizontalGroup(
+            panelTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(panelTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panelTableLayout.createSequentialGroup()
+                    .addGap(11, 11, 11)
+                    .addComponent(jScrollPane1)
+                    .addGap(12, 12, 12)))
+        );
+        panelTableLayout.setVerticalGroup(
+            panelTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 420, Short.MAX_VALUE)
+            .addGroup(panelTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panelTableLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 408, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+        );
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -138,10 +187,6 @@ public class MateriaCargar extends javax.swing.JInternalFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(txtAnio, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(chkEstado))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -160,8 +205,12 @@ public class MateriaCargar extends javax.swing.JInternalFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(btnAltaLogica)
                                 .addGap(18, 18, 18)
-                                .addComponent(btnBorrar)))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                                .addComponent(btnBorrar))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(chkEstado)))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 120, Short.MAX_VALUE)
                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(34, 34, 34))
             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -170,6 +219,10 @@ public class MateriaCargar extends javax.swing.JInternalFrame {
                 .addGap(208, 208, 208)
                 .addComponent(btnLimpiar)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(panelTable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -207,7 +260,9 @@ public class MateriaCargar extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnListar)
                     .addComponent(btnLimpiar))
-                .addContainerGap(141, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(panelTable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -270,10 +325,16 @@ public class MateriaCargar extends javax.swing.JInternalFrame {
             Materia mat = new Materia(nombre, anio, true);
             matData.guardarMateria(mat);
             limpiarCampos();
+            modelo.setRowCount(0);
+            visibilizarTabla(false);
         } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(this, "El año de cursada debe ser un número entero.");
+            modelo.setRowCount(0);
+            visibilizarTabla(false);
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, "Error al guardar la materia: " + ex.getMessage());
+            modelo.setRowCount(0);
+            visibilizarTabla(false);
         }
     }//GEN-LAST:event_btnGuardarActionPerformed
 
@@ -290,6 +351,8 @@ public class MateriaCargar extends javax.swing.JInternalFrame {
             Materia mat = new Materia(idMateriaActual, nombre, anio, estado);
             matData.actualizarMateria(mat);
             limpiarCampos();
+            modelo.setRowCount(0);
+            visibilizarTabla(false);
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, "Error al modificar la materia.");
         }
@@ -299,6 +362,9 @@ public class MateriaCargar extends javax.swing.JInternalFrame {
         if (idMateriaActual != 0) {
             matData.bajaLogica(idMateriaActual);
             chkEstado.setSelected(false);
+            estadoBotones(true);
+            modelo.setRowCount(0);
+            cargarTabla();
         } else {
             JOptionPane.showMessageDialog(this, "Busque una materia primero.");
         }
@@ -308,6 +374,9 @@ public class MateriaCargar extends javax.swing.JInternalFrame {
         if (idMateriaActual != 0) {
             matData.altaLogica(idMateriaActual);
             chkEstado.setSelected(true);
+            estadoBotones(true);
+            modelo.setRowCount(0);
+            cargarTabla();
         } else {
             JOptionPane.showMessageDialog(this, "Busque una materia primero.");
         }
@@ -326,23 +395,31 @@ public class MateriaCargar extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnBorrarActionPerformed
 
     private void btnListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarActionPerformed
-         List<Materia> lista = matData.listarMaterias();
-        StringBuilder sb = new StringBuilder("MATERIAS ACTIVAS:\n\n");
-        for (Materia m : lista) {
-            sb.append(m.toString()).append("\n");
-        }
-        JOptionPane.showMessageDialog(this, sb.toString(), "Listado de Materias", JOptionPane.INFORMATION_MESSAGE);
+        cargarTabla();
+        visibilizarTabla(true);
     }//GEN-LAST:event_btnListarActionPerformed
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
         limpiarCampos();
+        visibilizarTabla(false);
+        modelo.setRowCount(0);
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
     private void estadoBotones(boolean buscando) {
         btnGuardar.setEnabled(!buscando);
         btnModificar.setEnabled(buscando);
-        btnBajaLogica.setEnabled(buscando);
-        btnAltaLogica.setEnabled(buscando);
+        if (buscando){
+            if(chkEstado.isSelected()){
+                btnAltaLogica.setEnabled(false);
+                btnBajaLogica.setEnabled(true);
+            } else {
+                btnAltaLogica.setEnabled(true);
+                btnBajaLogica.setEnabled(false);
+            }
+        } else {
+            btnAltaLogica.setEnabled(false);
+            btnBajaLogica.setEnabled(false);
+        }
         btnBorrar.setEnabled(buscando);
 
         chkEstado.setEnabled(false);
@@ -360,7 +437,43 @@ public class MateriaCargar extends javax.swing.JInternalFrame {
 
         estadoBotones(false);
     }
+    
+    private void visibilizarTabla(boolean activo){
+        panelTable.setVisible(activo);
+        tableMaterias.setVisible(activo);
+        jScrollPane1.setVisible(activo);
+    }
 
+    private void cargarCabecera(){
+        modelo.addColumn("ID");
+        modelo.addColumn("Nombre");
+        modelo.addColumn("Año Materia");
+        modelo.addColumn("Activo");
+        tableMaterias.setModel(modelo);
+    }
+    
+    private void cargarTabla(){
+        modelo.setRowCount(0);
+        listaMaterias = matData.listarTodasLasMaterias();
+        if(listaMaterias.size() > 0){
+            for(Materia mate: listaMaterias){
+                String activo = "";
+                if(mate.isActivo())
+                    activo = "Activa";
+                else
+                    activo = "Desactivada";
+                
+                modelo.addRow(new Object[]{
+                    mate.getIdMateria(),
+                    mate.getNombre(),
+                    mate.getAnioMateria(),
+                    activo
+                });
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "No hay materias cargadas");
+        }
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAltaLogica;
     private javax.swing.JButton btnBajaLogica;
@@ -379,6 +492,9 @@ public class MateriaCargar extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JPanel panelTable;
+    private javax.swing.JTable tableMaterias;
     private javax.swing.JTextField txtAnio;
     private javax.swing.JTextField txtId;
     private javax.swing.JTextField txtNombre;
