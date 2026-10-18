@@ -1,1 +1,4 @@
 /SGULPGRUPODos/nbproject/private/
+build/
+nbproject/private/
+.DS_Store
