@@ -43,9 +43,12 @@ public class PrincipalSGULP extends javax.swing.JFrame {
         AlumnoCargar = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         MateriaCargar = new javax.swing.JMenuItem();
+        menuInscripciones = new javax.swing.JMenu();
+        nuevaInscripcion = new javax.swing.JMenuItem();
+        menuListarInscripciones = new javax.swing.JMenuItem();
+        CargarNota = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(900, 700));
 
         javax.swing.GroupLayout escritorioLayout = new javax.swing.GroupLayout(escritorio);
         escritorio.setLayout(escritorioLayout);
@@ -82,6 +85,22 @@ public class PrincipalSGULP extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu3);
 
+        menuInscripciones.setText("Inscripciones");
+
+        nuevaInscripcion.setText("Nueva Inscripcion");
+        nuevaInscripcion.addActionListener(this::nuevaInscripcionActionPerformed);
+        menuInscripciones.add(nuevaInscripcion);
+
+        menuListarInscripciones.setText("Listar Inscripciones");
+        menuListarInscripciones.addActionListener(this::menuListarInscripcionesActionPerformed);
+        menuInscripciones.add(menuListarInscripciones);
+
+        CargarNota.setText("Cargar Nota");
+        CargarNota.addActionListener(this::CargarNotaActionPerformed);
+        menuInscripciones.add(CargarNota);
+
+        jMenuBar1.add(menuInscripciones);
+
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -117,7 +136,7 @@ public class PrincipalSGULP extends javax.swing.JFrame {
     }//GEN-LAST:event_AlumnoCargarActionPerformed
 
     private void MateriaCargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MateriaCargarActionPerformed
-       escritorio.removeAll();
+        escritorio.removeAll();
         escritorio.repaint();
         MateriaCargar vistaMateria = new MateriaCargar();
         vistaMateria.setVisible(true);
@@ -128,6 +147,48 @@ public class PrincipalSGULP extends javax.swing.JFrame {
             e.printStackTrace();
         }
     }//GEN-LAST:event_MateriaCargarActionPerformed
+
+    private void nuevaInscripcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevaInscripcionActionPerformed
+        escritorio.removeAll();
+        escritorio.repaint();
+        InscripcionesCargar vistaInscripcion = new InscripcionesCargar();
+        escritorio.add(vistaInscripcion);
+        vistaInscripcion.setVisible(true);
+        vistaInscripcion.setBounds(0, 0, 700, 500);
+        vistaInscripcion.setLocation(0, 0);
+        
+        try {
+            vistaInscripcion.setSelected(true);
+        } catch (java.beans.PropertyVetoException e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_nuevaInscripcionActionPerformed
+
+    private void menuListarInscripcionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuListarInscripcionesActionPerformed
+        escritorio.removeAll();
+        escritorio.repaint();
+        ListarInscripciones vistaListarInscripcion = new ListarInscripciones();
+        escritorio.add(vistaListarInscripcion);
+        vistaListarInscripcion.setVisible(true);
+        try {
+            vistaListarInscripcion.setSelected(true);
+        } catch (java.beans.PropertyVetoException e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_menuListarInscripcionesActionPerformed
+
+    private void CargarNotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CargarNotaActionPerformed
+        escritorio.removeAll();
+        escritorio.repaint();
+        CargarNota cargarNota = new CargarNota();
+        escritorio.add(cargarNota);
+        cargarNota.setVisible(true);
+        try {
+            cargarNota.setSelected(true);
+        } catch (java.beans.PropertyVetoException e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_CargarNotaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -156,6 +217,7 @@ public class PrincipalSGULP extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem AlumnoCargar;
+    private javax.swing.JMenuItem CargarNota;
     private javax.swing.JMenuItem MateriaCargar;
     private javax.swing.JDesktopPane escritorio;
     private javax.swing.JMenu jMenu1;
@@ -163,5 +225,8 @@ public class PrincipalSGULP extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jmSalir;
+    private javax.swing.JMenu menuInscripciones;
+    private javax.swing.JMenuItem menuListarInscripciones;
+    private javax.swing.JMenuItem nuevaInscripcion;
     // End of variables declaration//GEN-END:variables
 }

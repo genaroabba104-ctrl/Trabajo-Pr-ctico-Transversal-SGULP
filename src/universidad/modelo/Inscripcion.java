@@ -14,23 +14,26 @@ public class Inscripcion {
     private Alumno alumno;
     private Materia materia;
     private double nota;
+    private int cursa;
     private int asistencia;
 
     public Inscripcion() {}
 
-    public Inscripcion(int idInscripcion, Alumno alumno, Materia materia, double nota, int asistencia) {
+    public Inscripcion(int idInscripcion, Alumno alumno, Materia materia, double nota, int asistencia, int cursa) {
         this.idInscripcion = idInscripcion;
         this.alumno = alumno;
         this.materia = materia;
         this.nota = nota;
         this.asistencia = asistencia;
+        this.cursa = cursa;
     }
 
-    public Inscripcion(Alumno alumno, Materia materia, double nota, int asistencia) {
+    public Inscripcion(Alumno alumno, Materia materia, double nota, int asistencia, int cursa) {
         this.alumno = alumno;
         this.materia = materia;
         this.nota = nota;
         this.asistencia = asistencia;
+        this.cursa = cursa;
     }
 
     public int getIdInscripcion() { return idInscripcion; }
@@ -48,8 +51,11 @@ public class Inscripcion {
     public int getAsistencia() { return asistencia; }
     public void setAsistencia(int asistencia) { this.asistencia = asistencia; }
 
+    public int getCursa() { return cursa; }
+    public void setCursa(int cursa) {this.cursa = cursa;}
+    
     @Override
     public String toString() {
-        return "Inscripcion ID: " + idInscripcion + " | Alumno: " + alumno.getApellido() + " - Materia: " + materia.getNombre() + " (Nota: " + nota + ")";
+        return "Inscripcion ID: " + idInscripcion + " | Alumno: " + alumno.getApellido() + " - Materia: " + materia.getNombre() + " (Nota: " + nota + ")" + "| Cursa: " + cursa;
     }
 }
